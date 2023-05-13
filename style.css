@@ -1,0 +1,303 @@
+
+
+           body{
+                background-color: #897ecc;
+                background-size: cover;
+                font-family: 'Poppins',sans-serif;
+            }
+
+            .wrapper {
+                
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns:  repeat(3,1fr);
+            grid-template-rows: repeat( 2, 280px);
+            color: #444;
+            background: linear-gradient(135deg, #153677,#1a065d)"
+            }
+
+            .wrapper h2{
+                color: #323d4f;
+            }
+
+            .box {
+                background: #ffffff;
+            }
+
+            .todo-list {
+            grid-column: 1 ;
+            grid-row: 1 / 3;
+            height: 250px;
+            /* align-self: stretch; */
+            }
+
+            .timerBlock {
+            grid-column: 2 ;
+            grid-row: 1 / 3;
+            height: 250px;
+            /* align-self: stretch; */
+            }
+
+            .c {
+            grid-column: 3 ;
+            grid-row: 1 / 3;
+            height: 300px;
+            /* align-self: stretch; */
+            }
+
+            .d {
+            grid-column: 3 ;
+            grid-row: 2 / 3;
+            height: 250px;
+            /* align-self: stretch; */
+            }
+
+            #rcorners1 {
+            border-radius: 15px;
+            
+            padding: 40px 30px 70px; 
+            width: 100%;
+            max-width: 350px;
+            height: 250px; 
+            margin: 20px auto 20px;
+            border-color: transparent;
+            }
+
+            #rcorners2 {
+                border-radius: 15px;
+                
+                padding: 40px 30px 70px; 
+                width: 100%;
+                max-width: 350px;
+                height: 180px;
+                margin: 20px auto 20px;
+                border-color: transparent;
+                
+            }
+
+            #rcorners3 {
+                
+                border-radius: 15px;
+                
+                padding: 40px 30px 70px; 
+                width: 100%;
+                max-width: 350px;
+                margin: 20px auto 20px;
+                height: 60px;
+                border-color: transparent;
+            }
+
+            .todo-list h2{
+                
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                margin-top: 0px;
+            }
+
+            .todo-list img{
+                width: 30px;
+                margin-left: 10px;
+            }
+
+            .row{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #edeef0;
+                border-radius: 30px;
+                padding-left: 20px;
+                margin-bottom: 5px;
+            }
+
+            input{
+                flex: 1;
+                border: none;
+                outline: none;
+                background: transparent;
+                padding: 10px;
+            }
+
+            button{
+                border: none;
+                outline: none;
+                padding: 16px 50px;
+                background: #ff5945;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 40px;
+            }
+
+            ul li{
+                list-style: none;
+                font-size: 17px;
+                padding:12px 8px 12px 50px;
+                user-select: none;
+                cursor: pointer;
+                position: relative;
+            }
+
+            ul li::before{
+                content: '';
+                position: absolute;
+                height: 28px;
+                width: 28px;
+                border-radius: 50%;
+                background-image: url(images/unchecked.png);
+                background-size: cover;
+                background-position: center;
+                top: 12px;
+                left: 8px;
+            }
+            
+            ul li.checked{
+                color: #555;
+                text-decoration: line-through;
+            }
+
+            ul li.checked::before{
+                background-image: url(images/checked.png);
+            }
+
+            ul li span{
+                position: absolute;
+                right: 0;
+                top: 5px;
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+                color: #555;
+                line-height: 40px;
+                text-align: center;
+            }
+
+            ul li span:hover{
+                background: #edeef0;
+            }
+
+            .timer {
+                font-family: sans-serif;
+                display: inline-block;
+                padding: 1px 40px;
+                border-radius: 30px;
+                
+                text-align: center;
+              }
+              
+              .timer__part {
+                font-size: 36px;
+                font-weight: bold;
+              }
+              
+              /* .timer__btn {
+                width: 50px;
+                height: 50px;
+                margin-left: 16px;
+                border-radius: 50%;
+                border: none;
+                color: white;
+                background: #8208e6;
+                cursor: pointer;
+              }
+              
+              .timer__btn--start {
+                background: #00b84c;
+              } */
+              
+              .timer__btn--stop {
+                background: #ff0256;
+              }
+
+              .timerBlock h2{
+                display: flex;
+                align-items: center;
+                margin-top: 0px;
+                margin-bottom: 10px;
+            }
+
+
+            .container {
+                --light-color: #fff;
+                height: 420px;
+                width: 350px;
+                background: var(--light-color);
+                position: fixed;
+                bottom: 50px;
+                right: 10px;
+                box-shadow: 0px 0px 15px 0px black;
+              }
+              .chat-header {
+                display: flex;
+                align-items: center;
+
+                color: var(--light-color);
+                font-size: 1.5rem;
+              }
+              
+              .chat-header .logo {
+                height: 0px;
+                width: 0px;
+            
+              }
+
+              .chat-header .title {
+                padding-left: 10px;
+              }
+              .chat-body {
+                font-size: 18px;
+                height: 180px;
+                display: flex;
+                flex-direction: column;
+                padding: 8px 10px;
+                align-items: flex-end;
+                overflow-y: auto;
+              }
+              
+              .chat-body::-webkit-scrollbar{
+                display: none;
+              }
+
+              .chat-input {
+                height: 60px;
+                display: flex;
+                align-items: center;
+                border-top: 1px solid #ccc;
+              }
+              .input-sec {
+                flex: 9;
+              }
+              .send {
+                flex: 1;
+                padding-right: 4px;
+              }
+              #txtInput {
+                line-height: 30px;
+                padding: 8px 10px;
+                border: none;
+                outline: none;
+                caret-color: black;
+                font-size: 1rem;
+                width: 100%;
+              }
+              
+              .chatbot-message,
+              .user-message {
+                padding: 8px;
+                background: #e4d2ce;
+                margin: 5px;
+                width: 230px;
+                border-radius: 10px 3px 10px 10px;
+              }
+              .chatbot-message {
+                background:#dba6a6;
+                color: var(--light-color);
+                align-self: flex-start;
+                border-radius: 10px 10px 3px 10px;
+                
+              }
+
+              #icon{
+                width: 80px;
+                cursor: pointer;
+              }
