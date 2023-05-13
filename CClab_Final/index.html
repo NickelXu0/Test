@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <meta charset="UTF-8" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script src="response.js" defer></script>
+        <script src="app.js" defer></script>
+
+        
+    </head> 
+
+    <body>
+        <audio id="happySong">
+            <source src="media/HappySong.mp3" type="audio/mp3">
+        </audio>
+        <audio id="sadSong">
+            <source src="media/SadSong.mp3" type="audio/mp3">
+        </audio>
+        <audio id="tiredSong">
+            <source src="media/TiredSong.mp3" type="audio/mp3">
+        </audio>
+        
+        <div class="wrapper">
+            <div class="box todo-list" id="rcorners1">
+              <h2>To-Do List <img src="images/icon.png"></h2>
+              <div class="row">
+                <input type="text" id="input-box" placeholder="Add your tasks">
+                <button onclick="addTask()">Add</button>
+              </div>
+              <ul id="list-container">
+                <!-- <li class="checked">Task 1</li>
+                <li>Task 1</li>
+                <li>Task 1</li> -->
+              </ul>
+              
+            </div>
+            
+            <div class="box timerBlock" id="rcorners2">
+                <h2>Timer</h2>
+                <!-- <div class="row">
+                    <input type="text" id="input-minute" placeholder="Add your tasks">
+                </div>                -->
+                <div class="timer"></div>
+  
+            </div>
+            <div class="box c" id="rcorners2">
+                <div class="chat-header">
+
+                  </div>
+                  <div class="chat-body"></div>
+                  <div class="chat-input">
+                    <div class="input-sec">
+                        <div class="row">
+                            <input type="text" id="txtInput" placeholder="Typ here" autofocus />
+                        </div>
+                    </div>
+                    <div class="send">
+                      <span> < </span>
+                    </div>
+                  </div>
+            </div>
+            
+
+            <div class="box d" id="rcorners3">
+                <h2>Music Player</h2>
+                <p>Click to play</p>
+                <img src="media/play.png" id="icon">
+  
+            </div>
+
+            <script>
+                
+            const chatBody = document.querySelector(".chat-body");
+            const txtInput = document.querySelector("#txtInput");
+            const send = document.querySelector(".send");
+
+            send.addEventListener("click", () => renderUserMessage());
+
+            txtInput.addEventListener("keyup", (event) => {
+            if (event.keyCode === 13) {
+                renderUserMessage();
+            }
+            });
+            //Music
+            var mySong=document.getElementById("happySong");
+            var icon=document.getElementById("icon");
+            
+
+            var res="";
+            const renderUserMessage = () => {
+            var userInput = txtInput.value;
+            if(userInput.includes("hi")||userInput.includes("hello")||userInput.includes("morning")||userInput.includes("good evening")){
+                res="How do you feel today?";
+            }else if(userInput.includes("good")||userInput.includes("not bad")||userInput.includes("happy")||userInput.includes("nice")){
+                res="That's nice! Hope you like the music I prepared for you.";
+                mySong=document.getElementById("happySong");
+            }else if(userInput.includes("tired")||userInput.includes("exhausted")||userInput.includes("annoying")||userInput.includes("long day")){
+                res="Really wish you can get enough rest after this. Please enjoy some relax music.";
+                mySong=document.getElementById("tiredSong");
+            }else if(userInput.includes("sad")||userInput.includes("bad")||userInput.includes("wanna die")||userInput.includes("tough")||userInput.includes("hard")){
+                res="I would give you a hug if I have arm. Hope you can get better here.";
+                mySong=document.getElementById("sadSong");
+            }else if(userInput.includes("name")){
+                res="You can call me Spacy!";
+            }else{
+                res="Hmm, not sure what's that mean. Try again?";
+            }
+            renderMessageEle(userInput, "user");
+            txtInput.value = "";
+            setTimeout(() => {
+                renderChatbotResponse(userInput);
+                setScrollPosition();
+            }, 600);
+            };
+
+            //Play music
+            icon.onclick=function(){
+                if(mySong.paused){
+                    mySong.play();
+                    icon.src="media/pause.png";
+                }else{
+                    mySong.pause();
+                    icon.src="media/play.png";
+                } 
+            }
+            
+
+            const renderChatbotResponse = (userInput) => {     
+            
+            renderMessageEle(res);
+            };
+            const renderMessageEle = (txt, type) => {
+            let className = "user-message";
+            if (type !== "user") {
+                className = "chatbot-message";
+            }
+            const messageEle = document.createElement("div");
+            const txtNode = document.createTextNode(txt);
+            messageEle.classList.add(className);
+            messageEle.append(txtNode);
+            chatBody.append(messageEle);
+            };
+
+            // const getChatbotResponse = (userInput) => {
+            // return responseObj[userInput] == undefined
+            //      ? "Hmm, try again?"
+            //      : responseObj[userInput];
+            //  };
+
+
+            const setScrollPosition = () => {
+            if (chatBody.scrollHeight > 0) {
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+            };
+
+            var boxes=document.getElementsByClassName('box');
+            var buttons=document.getElementsByTagName('button');
+            window.addEventListener("load", function(){               
+                setTimeout(
+                    function open(event){  
+                        const hours = new Date().getHours();                  
+                        if(hours >= 6 && hours < 12){
+                            renderMessageEle("Good Morning! I am your work and study assistant!"); 
+                            document.body.style.background="linear-gradient(135deg, #153677,#4e085f)";
+                            for(var i = 0; i < boxes.length; i++){
+                                boxes[i].style.background= "rgba(204, 222, 193, 0.7)";
+                                buttons[i].style.background="#445431";
+                            }
+                        } else if (hours >= 12 && hours < 20){
+                            renderMessageEle("Good Afternoon! I am your work and study assistant!"); 
+                            document.body.style.background="linear-gradient(135deg, #ffba8f,#fe7986)";
+                        } else if (hours >=20 || hours < 6){
+                            renderMessageEle("Good Evening! I am your work and study assistant!"); 
+                            document.body.style.background = "linear-gradient(135deg, #153677,#4e085f)";
+                            for(var i = 0; i < boxes.length; i++){
+                                boxes[i].style.background= "rgba(124, 137, 166, 0.7)";
+                                buttons[i].style.background="#151a42";
+                            }
+                        }
+                        
+                    },
+                1000 
+                                )
+            });
+
+            
+
+            </script>
+        </div>
+
+        
+
+        <script src="script.js"></script>
+    </body>
+</html>
